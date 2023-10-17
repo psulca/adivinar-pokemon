@@ -3,7 +3,7 @@ main {
   place-items: center;
   min-height: 100vh;
   padding: 20px;
-  font-family: "Press Start 2P", "Pokemon Hollow";
+  font-family: "Press Start 2P", roboto;
   grid-template-rows: 1fr 100px;
 }
 
@@ -20,8 +20,90 @@ img {
   border: 1px solid black;
   gap: 20px;
   position: relative;
+  overflow: hidden;
 }
 
-.pokeball-svg {
+.screen-container svg {
   position: absolute;
+  height: 100px;
+  z-index: 1;
+}
+
+.screen-container .pokeball-svg {
+  animation: scaleSpinTraslate 1s linear forwards;
+}
+
+@keyframes scaleSpinTraslate {
+  0% {
+    transform: rotate(360deg) scale(20);
+    display: block !important;
+  }
+  100% {
+    transform: rotate(0deg) translateX(-140px) scale(1);
+    display: none;
+  }
+}
+
+.screen-image {
+  min-width: 280px;
+}
+
+.screen-image img {
+  min-height: 280px;
+  filter: brightness(0);
+}
+
+.screen-image .appear-pokemon {
+  transform: scale(0);
+  animation: appearPokemon 0.5s linear 1s forwards;
+}
+
+@keyframes appearPokemon {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.show-pokemon {
+  filter: brightness(1) !important;
+  transition: filter 0.5s linear;
+}
+
+.show-pokemon-name {
+  animation: scaleSpin 0.5s linear forwards;
+}
+
+@keyframes scaleSpin {
+  0% {
+    transform: rotate(360deg) scale(0);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.screen-name {
+  min-width: 280px;
+  font-family: "Pokemon Hollow";
+}
+
+.screen-name h1 {
+  font-size: 2rem;
+  color: blue;
+  -webkit-text-fill-color: red;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+.input-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.8rem;
 }
