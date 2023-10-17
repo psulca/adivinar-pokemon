@@ -18,7 +18,10 @@ export function InputPokemon({handleGuessButton, showPokeball}: InputPokemonProp
   };
 
   useEffect(() => {
-    showPokeball && formRef.current?.reset();
+    if (showPokeball) {
+      formRef.current?.reset();
+      inputRef.current?.focus();
+    }
   }, [showPokeball]);
 
   return (
