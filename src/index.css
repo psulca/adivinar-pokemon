@@ -28,6 +28,7 @@ img {
   position: absolute;
   height: 100px;
   z-index: 1;
+  transform: scale(0);
 }
 
 .screen-container .pokeball-svg {

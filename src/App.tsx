@@ -44,18 +44,14 @@ function App() {
       localStorage.setItem("totalGuesses", totalGuesses.toString());
       localStorage.setItem("totalTries", totalTries.toString());
       localStorage.setItem("currentStreak", currentStreak.toString());
-      const firstTO = setTimeout(() => {
+      setShowPokeball(false);
+      const timeout = setTimeout(() => {
         getRandomPokemon();
         setGuessButtonClicked(false);
-        setShowPokeball(false);
-        const secondTO = setTimeout(() => {
-          setShowPokeball(true);
-        });
-
-        return () => clearTimeout(secondTO);
+        setShowPokeball(true);
       }, 5000);
 
-      return () => clearTimeout(firstTO);
+      return () => clearTimeout(timeout);
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guessButtonClicked]);
 
