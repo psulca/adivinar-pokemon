@@ -2,9 +2,10 @@ import {useRef} from "react";
 
 interface InputPokemonProps {
   handleGuessButton: (value: string) => void;
+  showPokeball: boolean;
 }
 
-export function InputPokemon({handleGuessButton}: InputPokemonProps) {
+export function InputPokemon({handleGuessButton, showPokeball}: InputPokemonProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const handleGuessButtonClick = (event: React.FormEvent) => {
@@ -26,7 +27,7 @@ export function InputPokemon({handleGuessButton}: InputPokemonProps) {
         placeholder="Pikachu, squirtle"
         type="text"
       />
-      <button>Guess Pokemon</button>
+      <button disabled={!showPokeball}>Guess Pokemon</button>
     </form>
   );
 }

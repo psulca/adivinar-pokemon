@@ -71,7 +71,7 @@ function App() {
       <aside>
         {bestStreak} {currentStreak} {totalGuesses} {totalTries}
       </aside>
-      <InputPokemon handleGuessButton={handleGuessButton} />
+      <InputPokemon handleGuessButton={handleGuessButton} showPokeball={showPokeball} />
     </main>
   );
 }
