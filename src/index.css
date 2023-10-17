@@ -139,7 +139,7 @@ img {
   height: 100%;
   display: grid;
   place-items: center;
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-animation {
