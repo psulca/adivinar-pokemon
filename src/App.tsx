@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import {Pokemon} from "./types";
 import {PokemonScreen} from "./components/PokemonScreen";
 import {InputPokemon} from "./components/InputPokemon";
+import {Scoreboard} from "./components/Scoreboard";
 import pokemonApi from "./api";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   );
   const [totalTries, setTotalTries] = useState(Number(localStorage.getItem("totalTries")) || 0);
   const [showPokeball, setShowPokeball] = useState(true);
+  const [correct, setCorrect] = useState(false);
 
   const getRandomPokemon = async () => {
     const randomPokemon = await pokemonApi.random();
@@ -28,6 +30,7 @@ function App() {
     setGuessButtonClicked(true);
     setTotalTries((totalTries) => totalTries + 1);
     if (value === pokemon?.name) {
+      setCorrect(true);
       setCurrentStreak((currentStreak) => currentStreak + 1);
       setTotalGuesses((totalGuesses) => totalGuesses + 1);
       if (currentStreak >= bestStreak) {
@@ -49,6 +52,7 @@ function App() {
         getRandomPokemon();
         setGuessButtonClicked(false);
         setShowPokeball(true);
+        setCorrect(false);
       }, 5000);
 
       return () => clearTimeout(timeout);
@@ -61,17 +65,23 @@ function App() {
 
   return (
     <main>
-      {pokemon && (
-        <PokemonScreen
-          pokemon={pokemon as Pokemon}
-          showPokeball={showPokeball}
-          showPokemon={guessButtonClicked}
+      <div className="app-container">
+        {pokemon && (
+          <PokemonScreen
+            correct={correct}
+            pokemon={pokemon as Pokemon}
+            showPokeball={showPokeball}
+            showPokemon={guessButtonClicked}
+          />
+        )}
+        <Scoreboard
+          bestStreak={bestStreak}
+          currentStreak={currentStreak}
+          totalGuesses={totalGuesses}
+          totalTries={totalTries}
         />
-      )}
-      <aside>
-        {bestStreak} {currentStreak} {totalGuesses} {totalTries}
-      </aside>
-      <InputPokemon handleGuessButton={handleGuessButton} showPokeball={showPokeball} />
+        <InputPokemon handleGuessButton={handleGuessButton} showPokeball={showPokeball} />
+      </div>
     </main>
   );
 }

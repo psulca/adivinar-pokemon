@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 interface InputPokemonProps {
   handleGuessButton: (value: string) => void;
@@ -14,20 +14,24 @@ export function InputPokemon({handleGuessButton, showPokeball}: InputPokemonProp
       const inputValue = inputRef.current?.value;
 
       handleGuessButton(inputValue!);
-      formRef.current?.reset();
     }
   };
+
+  useEffect(() => {
+    showPokeball && formRef.current?.reset();
+  }, [showPokeball]);
 
   return (
     <form ref={formRef} className="input-pokemon" onSubmit={handleGuessButtonClick}>
       <input
         ref={inputRef}
         autoComplete="off"
+        disabled={!showPokeball}
         name="pokemon"
         placeholder="Pikachu, squirtle"
         type="text"
       />
-      <button disabled={!showPokeball}>Guess Pokemon</button>
+      <button disabled={!showPokeball}>Guess!</button>
     </form>
   );
 }
