@@ -228,13 +228,18 @@ img {
     max-height: 480px;
     flex-direction: column;
     justify-content: end;
-    padding-bottom: 20px;
-    gap: 30px;
   }
 
   .screen-name {
     font-size: 2rem;
     margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  .screen-name h1 {
+    align-content: center;
   }
 
   @keyframes scaleSpinTraslate {
