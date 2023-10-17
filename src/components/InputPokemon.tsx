@@ -29,7 +29,6 @@ export function InputPokemon({handleGuessButton, showPokeball}: InputPokemonProp
       <input
         ref={inputRef}
         autoComplete="off"
-        disabled={!showPokeball}
         name="pokemon"
         placeholder="Pikachu, squirtle"
         type="text"
