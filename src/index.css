@@ -9,18 +9,19 @@ main {
 
 img {
   image-rendering: pixelated;
+  pointer-events: none;
 }
 
 .screen-container {
   display: flex;
-  align-items: center;
   justify-content: center;
   min-width: 280px;
-  /* aspect-ratio: 1/1; */
-  border: 1px solid black;
-  gap: 20px;
   position: relative;
   overflow: hidden;
+  background-image: url("../assets/backgroundH.png");
+  aspect-ratio: 16/9;
+  background-size: contain;
+  user-select: none;
 }
 
 .screen-container svg {
@@ -39,13 +40,16 @@ img {
     display: block !important;
   }
   100% {
-    transform: rotate(0deg) translateX(-140px) scale(1);
+    transform: rotate(0deg) translate(-140px, 100px) scale(1);
     display: none;
   }
 }
 
 .screen-image {
   min-width: 280px;
+  height: auto;
+  display: flex;
+  align-items: center;
 }
 
 .screen-image img {
@@ -87,13 +91,14 @@ img {
 
 .screen-name {
   min-width: 280px;
-  font-family: "Pokemon Hollow";
+  margin-top: 20px;
+  font-family: "Pokemon Solid";
+  font-size: 2.5rem;
 }
 
 .screen-name h1 {
-  font-size: 2rem;
-  color: blue;
-  -webkit-text-fill-color: red;
+  color: #ffcb05;
+  -webkit-text-stroke: 1px #3367b0;
   text-align: center;
   margin: 0;
   padding: 0;
@@ -106,4 +111,31 @@ img {
   justify-content: center;
   gap: 20px;
   font-size: 0.8rem;
+}
+
+@media (max-width: 560px) {
+  .screen-container {
+    background-image: url("../assets/backgroundV.png");
+    aspect-ratio: 9/16;
+    flex-direction: column;
+    justify-content: end;
+    padding-bottom: 20px;
+  }
+  
+  .screen-name {
+    font-size: 2rem;
+    margin-top: 0px;
+  }
+
+  @keyframes scaleSpinTraslate {
+    0% {
+      transform: rotate(360deg) scale(9);
+      display: block !important;
+    }
+    100% {
+      transform: rotate(0deg) translate(90px, -150px) scale(1);
+      display: none;
+    }
+  }
+
 }
